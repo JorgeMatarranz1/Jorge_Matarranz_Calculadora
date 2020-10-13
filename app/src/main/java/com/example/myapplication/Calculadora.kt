@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import kotlinx.android.synthetic.main.activity_calculadora.*
 
 class Calculadora : AppCompatActivity() {
@@ -21,8 +22,8 @@ class Calculadora : AppCompatActivity() {
 
     fun onClick(view: View?) {
         var btnClick : String = editText.text.toString()
-        var btnSelectt : Button = view as Button
-        when(btnSelectt.id){
+        var btnSeleccionado : Button = view as Button
+        when(btnSeleccionado.id){
             n1.id -> {btnClick += "1"}
             n2.id -> {btnClick += "2"}
             n3.id -> {btnClick += "3"}
@@ -56,11 +57,15 @@ class Calculadora : AppCompatActivity() {
             "multiplicar" -> {resultado = numeroOld.toInt() + numero.toInt()}
             "dividir" -> {resultado = numeroOld.toInt() + numero.toInt()}
         }
+        var message : String= numeroOld + " " + op + " " + numero
+        var miToast = Toast.makeText(applicationContext, message, Toast.LENGTH_LONG)
+        miToast.show()
         editText.setText(resultado.toString())
     }
 
     fun clean(view: View) {
         numeroOld=""
+        op=""
         editText.setText("")
     }
 
